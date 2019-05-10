@@ -1,13 +1,17 @@
 from django.shortcuts import render
+from collection.models import Profile
 # Create your views here.
 
 def index(request):
     # defining the variable
-    number = 6
-    # don't forget the quotes because it's a string, not an integer
-    thing = "Thing name"
+    profiles = Profile.objects.all()
     return render(request, 'index.html', {
-        'number': number,
-        # don't forget to pass it in, and the last comma
-        'thing': thing,
-})
+        'profiles': profiles,
+    })
+
+def profile_detail(request, slug):
+    # grab the object...
+    profile = Profile.objects.get(slug=slug)
+    return render(request, 'profiles/profile_detail.html',{
+        'profile': profile,
+    })

@@ -22,10 +22,12 @@ from django.urls import include, path
 urlpatterns = [
     path('', views.index, name='home'),
     path('about/',
-    TemplateView.as_view(template_name='about.html'),
-name='about'),
+        TemplateView.as_view(template_name='about.html'),
+    name='about'),
     path('contact/',
-    TemplateView.as_view(template_name='contact.html'),
-    name='contact'),
+        TemplateView.as_view(template_name='contact.html'),
+        name='contact'),
+    path('profiles/<slug>/', views.profile_detail,
+        name='profile_detail'),
     path('admin/', admin.site.urls),
 ]
